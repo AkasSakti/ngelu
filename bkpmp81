@@ -33,3 +33,4 @@ print("\nDataFrame setelah fillna dengan rata-rata 'feature1':\n", df)
 # Interpolasi untuk mengisi nilai NaN pada 'feature2'
 df['feature2'] = df['feature2'].interpolate()
 print("\nDataFrame setelah interpolasi pada 'feature2':\n", df)
+#http://localhost:8888/notebooks/descrip.ipynb
