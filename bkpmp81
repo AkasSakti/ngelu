@@ -1,0 +1,35 @@
+import pandas as pd
+import numpy as np
+
+# Membuat DataFrame dengan data yang benar
+df = pd.DataFrame({
+    'feature1': [np.nan, 3, 6, 9, 12, 15, np.nan],
+    'feature2': [100, np.nan, 200, 300, np.nan, np.nan, 600],
+    'feature3': [1000, 500, 2000, 3000, 4000, 6000, 8000]
+})
+
+# Cek nilai NaN dalam DataFrame
+print("Nilai NaN dalam DataFrame:\n", df.isnull())
+
+# Jumlah nilai NaN di setiap kolom
+print("\nJumlah nilai NaN per kolom:\n", df.isnull().sum())
+
+# Mengisi nilai NaN menggunakan metode 'pad' (forward fill) dengan limit 1
+df_pad = df.fillna(method='pad', limit=1)
+print("\nDataFrame setelah fillna dengan method 'pad' dan limit 1:\n", df_pad)
+
+# Mengisi nilai NaN menggunakan metode 'bfill' (backward fill)
+df_bfill = df.fillna(method='bfill')
+print("\nDataFrame setelah fillna dengan method 'bfill':\n", df_bfill)
+
+# Menghapus baris yang mengandung nilai NaN
+df_dropna = df.dropna(axis=0)
+print("\nDataFrame setelah dropna (hapus baris yang mengandung NaN):\n", df_dropna)
+
+# Mengisi nilai NaN pada 'feature1' dengan rata-rata (mean) dari kolom 'feature1'
+df['feature1'] = df['feature1'].fillna(df['feature1'].mean())
+print("\nDataFrame setelah fillna dengan rata-rata 'feature1':\n", df)
+
+# Interpolasi untuk mengisi nilai NaN pada 'feature2'
+df['feature2'] = df['feature2'].interpolate()
+print("\nDataFrame setelah interpolasi pada 'feature2':\n", df)
